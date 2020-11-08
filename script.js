@@ -50,4 +50,23 @@ function updateWrongLettersEl() {
     ${wrongLetters.map(letter => `<span>${letter}</span>`)}
   `;
 
-	// Display parts
+    // Display parts
+    figureParts.forEach((part, index) => {
+		const errors = wrongLetters.length;
+
+		if (index < errors) {
+			part.style.display = 'block';
+		} else {
+			part.style.display = 'none';
+		}
+	});
+
+    // Check if lost
+    if (wrongLetters.length === figureParts.length) {
+		finalMessage.innerText = 'F__K you lost. 😕';
+		finalMessageRevealWord.innerText = `...the word was: ${selectedWord}`;
+		popup.style.display = 'flex';
+
+		playable = false;
+	}
+}
